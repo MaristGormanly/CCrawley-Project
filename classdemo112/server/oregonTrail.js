@@ -4,7 +4,7 @@ const app = express();
 app.use(express.static('client/public'))
 
 app.get('/', function(request, response){
-  response.sendFile('index', {root: './client/views'})
+  response.sendFile('index.html', {root: './client/views'})
 })
 
 app.get('/mainmenu', function(request,response){
