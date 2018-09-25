@@ -1,16 +1,11 @@
-<head>
-<style>
-
-p.center {
-    text-align: center;
-}
-
-p.large{
-  font-size: 300%
+h1{
+  display: block;
+  text-align: center;
+  margin:auto;
 }
 
 body {
-    background-image: url("country road.jpg");
+    background-color: rgb(247, 182, 67);
 }
 
 img {
@@ -19,5 +14,17 @@ img {
     margin-right: auto;
 }
 
-</style>
-</head>
+p{
+    text-align: center;
+  }
+
+.blinking{
+  animation: blinkingText 0.8s infinite;
+}
+@@keyframes blinkingText {
+  0%{color: #000;}
+  49%{color: transparent;}
+  50%{color: transparent;}
+  99%{color: transparent;}
+  100%{color: #000;}
+}
