@@ -7,20 +7,24 @@ app.get('/', function(request, response){
   response.sendFile('index.html', {root: './client/views'})
 })
 
-app.get('/mainmenu', function(request,response){
-  response.sendFile('mainmenu', {root: './client/views'})
+app.get('/index.html', function(request, response){
+  response.sendFile('index.html', {root: './client/views'})
 })
 
-app.get('/setup', function(request,response){
-  response.sendFile('setup', {root: './client/views'})
+app.get('/mainmenu.html', function(request,response){
+  response.sendFile('mainmenu.html', {root: './client/views'})
 })
 
-app.get('/topten', function(request,response){
-  response.sendFile('topten', {root: './client/views'})
+app.get('/setup.html', function(request,response){
+  response.sendFile('setup.html', {root: './client/views'})
 })
 
-app.get('/trail', function(request,response){
-  response.sendFile('trail', {root: './client/views'})
+app.get('/topten.html', function(request,response){
+  response.sendFile('topten.html', {root: './client/views'})
+})
+
+app.get('/trail.html', function(request,response){
+  response.sendFile('trail.html', {root: './client/views'})
 })
 
 app.listen(1337,() => console.log("this is working"));
