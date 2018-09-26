@@ -20,13 +20,12 @@ p{
   margin:auto;
   }
 
-.blinking{
-  animation: blinkingText .56s infinite;
+.elementToFadeInAndOut{
+  opacity: 1;
+  animation: fade 2s infinite;
 }
-@keyframes blinkingText {
-  0%{color: #000;}
-  49%{color: transparent;}
-  50%{color: transparent;}
-  99%{color: transparent;}
-  100%{color: #000;}
+@keyframes fade {
+  0%,100%{ opacity: 0 }
+  50%{ opacity: 1 }
+
 }
