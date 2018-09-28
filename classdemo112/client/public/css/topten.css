@@ -18,3 +18,10 @@ h2{
   font-size: 150%;
   color: white;
   }
+
+  p{
+    display: block;
+    text-align: center;
+    margin: auto;
+    color: white;
+    }
