@@ -27,8 +27,15 @@ topScore.push(topScore8);
 topScore.push(topScore9);
 topScore.push(topScore10);
 
+var listContainer = document.createElement("div");
+var listElement = document.createElement("ul");
+
+document.getElemnentByTagName("body")[0].appendChild(listContainer);
+listContainer.appendChild(listElement);
+
 window.addEventListener('load', function(){
   var theList = document.getElementById('topTenList');
+
   for(el in topScore){
     theList.innerHTML += "Player Name: " + topScore[el].playername + "Score: " + topScore[el].playerScore + "Date: " + topScore[el].playerDate "<br />"
   }
@@ -39,3 +46,5 @@ document.addEventListener("keypress", function(event){
       window.location.href = "mainmenu.html";
     }//if
 });//function
+
+topScore();
