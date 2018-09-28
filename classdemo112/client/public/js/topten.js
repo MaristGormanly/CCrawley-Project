@@ -1,3 +1,9 @@
+document.addEventListener("keypress", function(event){
+    if(event.keyCode == 32){
+      window.location.href = "mainmenu.html";
+    }//if
+});//function
+
 function topScore(name, score, date){
   this.playerName = name;
   this.playerScore = score;
@@ -16,35 +22,22 @@ var topScore9 = {playername: "Campbell", playerScore: 25, playerDate: "2018/09/2
 var topScore10 = {playername: "Micheal", playerScore: 1, playerDate: "2018/09/27"}
 
 var topScores = [];
-topScore.push(topScore1);
-topScore.push(topScore2);
-topScore.push(topScore3);
-topScore.push(topScore4);
-topScore.push(topScore5);
-topScore.push(topScore6);
-topScore.push(topScore7);
-topScore.push(topScore8);
-topScore.push(topScore9);
-topScore.push(topScore10);
-
-var listContainer = document.createElement("div");
-var listElement = document.createElement("ul");
-
-document.getElemnentByTagName("body")[0].appendChild(listContainer);
-listContainer.appendChild(listElement);
+topScores.push(topScore1);
+topScores.push(topScore2);
+topScores.push(topScore3);
+topScores.push(topScore4);
+topScores.push(topScore5);
+topScores.push(topScore6);
+topScores.push(topScore7);
+topScores.push(topScore8);
+topScores.push(topScore9);
+topScores.push(topScore10);
 
 window.addEventListener('load', function(){
   var theList = document.getElementById('topTenList');
 
-  for(el in topScore){
-    theList.innerHTML += "Player Name: " + topScore[el].playername + "Score: " + topScore[el].playerScore + "Date: " + topScore[el].playerDate "<br />"
+  for(el in topScores){
+    topScore[el].playerScore.sort(function(a, b){return a - b});
+    topTenList.innerHTML += "Player Name: " + topScore[el].playername + "Score: " + topScore[el].playerScore + "Date: " + topScore[el].playerDate "<br />"
   }
 });
-
-document.addEventListener("keypress", function(event){
-    if(event.keyCode == 32){
-      window.location.href = "mainmenu.html";
-    }//if
-});//function
-
-topScore();
