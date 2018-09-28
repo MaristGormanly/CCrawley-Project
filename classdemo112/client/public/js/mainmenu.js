@@ -1,6 +1,6 @@
 document.addEventListener("keypress", function(event){
     if(event.keyCode == 49){//1
-      window.location = "trail.html";
+      window.location.href = "trail.html";
     }//if
 });//function
 
@@ -17,6 +17,7 @@ document.addEventListener("keypress", function(event){
 });//function
 
 document.getElementById("onColor").style.color = "red";
+document.getElementById().muted = false;
 
 document.addEventListener("keypress", function(event){
     if(event.keyCode == 52){//turn sound off 4
