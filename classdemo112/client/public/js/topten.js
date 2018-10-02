@@ -32,11 +32,15 @@ topScores.sort(function(a,b){
 });
 
 window.addEventListener('load', function(){
-  var theList = document.getElementById('topTenList');
+  var topScores = document.getElementById('topTenList');
   for(el in topScore){
     theList.innerHTML += "Player Name: " + topScores[el].playerName + "Player Score: " + topScores[el].playerScore + "Date: " + topScores[el].playerDate + "<br />"
   }
 });
+
+topScores.forEach((score) => topScores.innerHTML += score.playerName + "<br />");
+topScores.forEach((score) => topScores.innerHTML += score.playerScore + "<br />");
+topScores.forEach((score) => topScores.innerHTML += score.playerDate + "<br />");
 
 document.addEventListener("keypress", function(event){
     if(event.keyCode == 32){//space

@@ -5,7 +5,10 @@ h1{
 }
 
 body {
-    background-color: rgb(247, 182, 67);
+    background-image: url("../images/Country-Desktop-Wallpaper.jpg");
+    background-repeat: no-repeat;
+    background-size: 1160px 720px;
+    background-position-x: center;
 }
 
 img {
@@ -14,11 +17,11 @@ img {
     margin-right: auto;
 }
 
-p{
+p {
   display: block;
   text-align: center;
-  margin:auto;
-  }
+  margin: auto;
+}
 
 .elementToFadeInAndOut{
   opacity: 1;

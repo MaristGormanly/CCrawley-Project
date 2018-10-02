@@ -1,3 +1,26 @@
-body{
-  background-images: sunset-fog-meadow-11744.jpg
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
+
+
+body {
+    background-image: url("../images/sunset-fog-meadow-11744.jpg");
+    background-repeat: no-repeat;
+    background-size: 1160px 720px;
+    background-position-x: center;
+}
+
+h2{
+  background-size: 25%;
+}
+
+p{
+  display: block;
+  text-align: left;
+  text-align:
+  margin:auto;
+  font-size: 150%;
+  color: white;
+  }
