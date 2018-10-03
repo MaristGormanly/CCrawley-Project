@@ -32,9 +32,9 @@ topScores.sort(function(a,b){
 });
 
 window.addEventListener('load', function(){
-  var topScores = document.getElementById('topTenList');
-  for(el in topScore){
-    theList.innerHTML += "Player Name: " + topScores[el].playerName + "Player Score: " + topScores[el].playerScore + "Date: " + topScores[el].playerDate + "<br />"
+  var top = document.getElementById('topTenList');
+  for(el in topScores){
+    top.innerHTML += "Player Name: " + topScores[el].playerName + "Player Score: " + topScores[el].playerScore + "Date: " + topScores[el].playerDate + "<br />"
   }
 });
 
