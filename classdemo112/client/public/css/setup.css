@@ -1,0 +1,13 @@
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+p{
+  display: block;
+  text-align: center;
+  margin:auto;
+  font-size: 150%;
+  color: white;
+  }

@@ -4,11 +4,11 @@ document.addEventListener("keypress", function(event){
     }//if
 });//function
 
-document.addEventListener("keypress", function(event){
-    if(event.keyCode == 50){//2
-      window.location.href = ".html";
-    }//if
-});//function
+//document.addEventListener("keypress", function(event){
+  //  if(event.keyCode == 50){//2
+    //  window.location.href = ".html";
+    //}//if
+//});//function
 
 document.addEventListener("keypress", function(event){
     if(event.keyCode == 51){//3
