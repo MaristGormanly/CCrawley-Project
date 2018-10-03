@@ -4,13 +4,6 @@ img {
     margin-right: auto;
 }
 
-body {
-    background-image: url("../images/Country-Desktop-Wallpaper.jpg");
-    background-repeat: no-repeat;
-    background-size: 1160px 720px;
-    background-position-x: center;
-}
-
 h2{
   display: block;
   text-align: center;

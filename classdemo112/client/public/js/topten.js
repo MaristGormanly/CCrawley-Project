@@ -4,16 +4,16 @@ function topScore(name, score, date){
   this.playerDate = date;
 }
 
-var topScore1 = {playername: "Chris", playerScore: 10, playerDate: "2018/09/27"}
-var topScore2 = {playername: "Chris", playerScore: 9, playerDate: "2018/09/27"}
-var topScore3 = {playername: "Chris", playerScore: 8, playerDate: "2018/09/27"}
-var topScore4 = {playername: "Chris", playerScore: 7, playerDate: "2018/09/27"}
-var topScore5 = {playername: "Chris", playerScore: 6, playerDate: "2018/09/27"}
-var topScore6 = {playername: "Chris", playerScore: 5, playerDate: "2018/09/27"}
-var topScore7 = {playername: "Chris", playerScore: 4, playerDate: "2018/09/27"}
-var topScore8 = {playername: "Chris", playerScore: 3, playerDate: "2018/09/27"}
-var topScore9 = {playername: "Chris", playerScore: 2, playerDate: "2018/09/27"}
-var topScore10 = {playername: "Chris", playerScore: 1, playerDate: "2018/09/27"}
+var topScore1 = {playerName: "Chris ", playerScore: 10, playerDate: "2018/09/27"}
+var topScore2 = {playerName: "Chris ", playerScore: 9, playerDate: "2018/09/27"}
+var topScore3 = {playerName: "Chris ", playerScore: 8, playerDate: "2018/09/27"}
+var topScore4 = {playerName: "Chris ", playerScore: 7, playerDate: "2018/09/27"}
+var topScore5 = {playerName: "Chris ", playerScore: 6, playerDate: "2018/09/27"}
+var topScore6 = {playerName: "Chris ", playerScore: 5, playerDate: "2018/09/27"}
+var topScore7 = {playerName: "Chris ", playerScore: 4, playerDate: "2018/09/27"}
+var topScore8 = {playerName: "Chris ", playerScore: 3, playerDate: "2018/09/27"}
+var topScore9 = {playerName: "Chris ", playerScore: 2, playerDate: "2018/09/27"}
+var topScore10 = {playerName: "Chris ", playerScore: 1, playerDate: "2018/09/27"}
 
 var topScores = [];
 topScores.push(topScore1);
@@ -33,8 +33,10 @@ topScores.sort(function(a,b){
 
 window.addEventListener('load', function(){
   var top = document.getElementById('topTenList');
+  var i = 1;
   for(el in topScores){
-    top.innerHTML += "Player Name: " + topScores[el].playerName + "Player Score: " + topScores[el].playerScore + "Date: " + topScores[el].playerDate + "<br />"
+    top.innerHTML += [i] +" "+ topScores[el].playerName + " Player Score: " + topScores[el].playerScore + " Date: " + topScores[el].playerDate + "<br />"
+    i++;
   }
 });
 
