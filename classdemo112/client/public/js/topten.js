@@ -40,10 +40,6 @@ window.addEventListener('load', function(){
   }
 });
 
-topScores.forEach((score) => topScores.innerHTML += score.playerName + "<br />");
-topScores.forEach((score) => topScores.innerHTML += score.playerScore + "<br />");
-topScores.forEach((score) => topScores.innerHTML += score.playerDate + "<br />");
-
 document.addEventListener("keypress", function(event){
     if(event.keyCode == 32){//space
       window.location.href = "mainmenu.html";
