@@ -17,17 +17,16 @@ document.addEventListener("keypress", function(event){
 });//function
 
 document.getElementById("onColor").style.color = "red";
-document.getElementById().muted = false;
 
-document.addEventListener("keypress", function(event){
-    if(event.keyCode == 52){//turn sound off 4
-      if(document.getElementById().muted = false){
-        document.getElementById().muted = true;
-        document.getElementById("offColor").style.color = "red";
-      }//if
-      else{
-        document.getElementById().muted = false;
-        document.getElementById("onColor").style.color = "red";
-      }//else
-    }//if
-});//function
+//document.addEventListener("keypress", function(event){
+  //  if(event.keyCode == 52){//turn sound off 4
+      //if( = false){
+    //    document.getElementById().muted = true;
+      //  document.getElementById("offColor").style.color = "red";
+      //}//if
+      //else{
+      //  document.getElementById().muted = false;
+      //  document.getElementById("onColor").style.color = "red";
+      //}//else
+    //}//if
+//});//function
