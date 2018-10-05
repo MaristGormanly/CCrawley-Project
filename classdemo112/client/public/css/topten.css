@@ -12,10 +12,19 @@ h2{
   color: white;
   }
 
+h3{
+    display: block;
+    text-align: center;
+    margin:auto;
+    font-size: 150%;
+    color: white;
+    }
+
 div{
   display: block;
   text-align: center;
   margin: auto;
+  font-size: 150%;
   color: white;
 }
 

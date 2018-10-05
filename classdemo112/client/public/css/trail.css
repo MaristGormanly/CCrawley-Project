@@ -12,7 +12,6 @@ img {
 
 }
 
-
 body {
     background-image: url("../images/sunset-fog-meadow-11744.jpg");
     background-repeat: no-repeat;
@@ -26,9 +25,12 @@ h2{
 
 p{
   display: block;
-  text-align: left;
-  text-align: bottom;
   margin:auto;
-  font-size: 100%;
+  font-size: 125%;
   color: white;
   }
+
+.bottom{
+  position: fixed;
+  bottom: 0;
+}
