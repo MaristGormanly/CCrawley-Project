@@ -14,6 +14,6 @@ function gameData(playerNames, playerStatus, playerProfession, playerMoney, star
 }
 
 exports.addGameData = function(playerNames, playerStatus, playerProfession, playerMoney, startMonth, milesTraveled, groupHealth, currentPace, daysOnTrail, currentWeather, currentTerrain, messages) {
-  var gameInfo = new gameData(playerNames, playerStatus, playerProfession, playerMoney, startMonth, milesTraveled, groupHealth, currentPace, daysOnTrail, currentWeather, currentTerrain, messages));
+  var gameInfo = new gameData(playerNames, playerStatus, playerProfession, playerMoney, startMonth, milesTraveled, groupHealth, currentPace, daysOnTrail, currentWeather, currentTerrain, messages);
   return gameInfo;
 }
