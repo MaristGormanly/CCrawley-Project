@@ -1,6 +1,5 @@
 var topTen = require('../models/topTen');
 
-
 var topScore1 = {playerName: "Chris ", playerScore: 10, playerDate: "09/27/2018"}
 var topScore2 = {playerName: "Chris ", playerScore: 9, playerDate: "09/27/2018"}
 var topScore3 = {playerName: "Chris ", playerScore: 8, playerDate: "09/27/2018"}
@@ -33,7 +32,7 @@ topScores.sort(function(a,b){
   return b.score - a.score;
 });
 
-exports.updateUser = function(req, res){
+/*exports.updateUser() = function(req, res){
   var updatedUser = topScores[req.params.userID];
   var top = document.getElementById('topTenList');
   var i = 1;
@@ -41,4 +40,4 @@ exports.updateUser = function(req, res){
     top.innerHTML += [i] +") " + topScores[el].playerName + " ... " + topScores[el].playerScore + " ... " + topScores[el].playerDate + "<br />"
     i++;
   }
-}
+}*/
