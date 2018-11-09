@@ -4,7 +4,7 @@ var pace = require ('../models/pace');
 var weather = require('../models/weather');
 var terrain = require('../models/terrain');
 
-exports.updatePace = function(req, res){
+exports.getPace = function(req, res){
     data.currentPace = pace.allPaces[req.params.id];
     res.setHeader('Content-Type', 'application/json');
     res.send(gameData.addData.currentPace);
@@ -14,7 +14,7 @@ exports.updatePace = function(req, res){
 exports.updateGame = function(req, res){
   data.daysOnTrail++;
 
-  //data.milesTraveled = data.milesTraveled + gameData.addData.currentPace;
+  data.milesTraveled = data.milesTraveled + data.currentPace.inMiles;
 
   data.currentWeather = weather.allWeather[3];
 
@@ -53,6 +53,7 @@ exports.updateGame = function(req, res){
   else if (t >= 96 && t <= 100) {
     data.currentWeather = weather.allWeather[10];
   }
+  //currentWeather
 
   var t = Math.floor(Math.random() * 100);
   if(t >= 0 && t <= 25){
@@ -67,27 +68,35 @@ exports.updateGame = function(req, res){
   else if(t >= 76 && t <= 100){
     data.currentTerrain = terrain.allTerrain[3];
   }
+  //currentTerrain
 
   data.groupHealth = data.groupHealth + data.currentWeather.healthChange;
   data.groupHealth = data.groupHealth + data.currentPace.playerHealth;
 
   var d = Math.random();
-  var i = data.playerStatus[Math.floor(Math.random() * data.playerStatus.length)];
+  var i = Math.floor(Math.random() * data.playerStatus.length);
+
+  console.log(d);
+  console.log(i);
 
   if (data.groupHealth < 50 && data.groupHealth >= 20){
-    if(d < 0.03){
+    if(d <= 0.03){
       data.playerStatus[i] = true;
+      data.messages.push(data.playerNames[i] + " has died");
+      console.log(data.playerNames[i] + " has died");
     }
   }
   else if (data.groupHealth < 20 && data.groupHealth > 0){
-    if(d < 0.1){
+    if(d <= 0.1){
       data.playerStatus[i] = true;
+      data.messages.push(data.playerNames[i] + " has died");
+      console.log(data.playerNames[i] + " has died");
     }
   }
 
   if(data.milesTraveled = 500 && data.daysOnTrail <= 45){
   }
-  if(data.milesTraveled > 500 && data.daysOnTrail > 45) {
+  if(data.milesTraveled > 500 && data.daysOnTrail > 45 || data.groupHealth <= 0) {
   }
   res.setHeader('Content-Type', 'application/json');
   res.send(data);

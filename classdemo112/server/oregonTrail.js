@@ -53,9 +53,10 @@ app.route('/api/gameCont/nextday')
   .get(gameCont.updateGame)
 
 app.route('/api/gameCont/reset')
-  .post(gameCont.resetGame)
+  .get(gameCont.resetGame)
 
 var getPaces = require('./models/pace');
+
 app.route('/api/gameCont/getAllPaces')
   .get(getPaces.getAllPaces)
 
