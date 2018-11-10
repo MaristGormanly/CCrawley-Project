@@ -7,21 +7,19 @@ var terrain = require('../models/terrain');
 exports.getPace = function(req, res){
     data.currentPace = pace.allPaces[req.params.id];
     res.setHeader('Content-Type', 'application/json');
-    res.send(gameData.addData.currentPace);
-};
-
+    res.send(data);
+}
 
 exports.updateGame = function(req, res){
   data.daysOnTrail++;
 
-  data.milesTraveled = data.milesTraveled + data.currentPace.inMiles;
+  //data.milesTraveled += data.currentPace.playerMiles;
 
   data.currentWeather = weather.allWeather[3];
 
   var t = Math.floor(Math.random() * 100);
   if (t >= 0 && t <= 10) {
     data.currentWeather = weather.allWeather[0];
-    console.log("you win");
   }
   else if (t >= 11 && t <= 21) {
     data.currentWeather = weather.allWeather[1];
@@ -70,14 +68,12 @@ exports.updateGame = function(req, res){
   }
   //currentTerrain
 
+
   data.groupHealth = data.groupHealth + data.currentWeather.healthChange;
   data.groupHealth = data.groupHealth + data.currentPace.playerHealth;
 
   var d = Math.random();
   var i = Math.floor(Math.random() * data.playerStatus.length);
-
-  console.log(d);
-  console.log(i);
 
   if (data.groupHealth < 50 && data.groupHealth >= 20){
     if(d <= 0.03){
@@ -95,8 +91,10 @@ exports.updateGame = function(req, res){
   }
 
   if(data.milesTraveled = 500 && data.daysOnTrail <= 45){
+    data.messages.push("you win");
   }
-  if(data.milesTraveled > 500 && data.daysOnTrail > 45 || data.groupHealth <= 0) {
+  if(data.daysOnTrail > 45 || data.groupHealth <= 0) {
+    data.messages.push("you lose");
   }
   res.setHeader('Content-Type', 'application/json');
   res.send(data);

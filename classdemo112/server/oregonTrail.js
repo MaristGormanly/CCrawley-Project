@@ -3,9 +3,6 @@ const app = express();
 
 app.use(express.static('client/public'))
 
-var topTen = require('./controllers/topTenController');
-var setup = require('./controllers/setupController');
-
 app.get('/', function(request, response){
   response.sendFile('index.html', {root: './client/views'})
 })
@@ -30,22 +27,31 @@ app.get('/trail.html', function(request,response){
   response.sendFile('trail.html', {root: './client/views'})
 })
 
+var topTen = require('./controllers/topTenController');
+
 app.route('/api/topTen')
   .get(topTen.getCurrentScores)
 
-/*app.route('/api/setup/profession')
+var setup = require('./controllers/setupController');
+var getProf = ('./models/professions');
+
+app.route('/api/getProf/profession')
+  .get(setup.getProfession)
+
+app.route('/api/getProf/profession/:id')
   .post(setup.getProfession)
 
 app.route('/api/setup/player')
   .get(setup.getAllPlayerNames)
-  .post(setup.savePLayerName)
 
 app.route('/api/setup/player/:id')
-  .get(setup.getAllPlayerNames)
-  .post(setup.savePLayerName)
+  .post(setup.getAllPlayerNames)
 
 app.route('/api/setup/month')
-  .post(setup.getStartMonth)*/
+  .get(setup.getStartMonth)
+
+app.route('/api/setup/month/:id')
+  .post(setup.getStartMonth)
 
 var gameCont = require('./controllers/gameController');
 
@@ -57,10 +63,10 @@ app.route('/api/gameCont/reset')
 
 var getPaces = require('./models/pace');
 
-app.route('/api/gameCont/getAllPaces')
-  .get(getPaces.getAllPaces)
+app.route('/api/getPaces/getAllPaces')
+  .get(gameCont.getPace)
 
-app.route('/api/gameCont/getAllPaces/:id')
-  .post(getPaces.getAllPaces)
+app.route('/api/getPaces/getAllPaces/:id')
+  .post(gameCont.getPace)
 
 app.listen(1337,() => console.log("this is working"));
