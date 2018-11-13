@@ -11,5 +11,5 @@ exports.allProfs.push(new profInfo('farmer', 10));
 
 exports.getAllProfs = function(req, res){
   res.setHeader('Content-Type', 'application/json');
-  res.send(exports.allProfs)
+  res.send(exports.allProfs);
 }

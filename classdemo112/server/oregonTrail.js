@@ -44,7 +44,7 @@ app.route('/api/getProf/profession/:id')
 app.route('/api/setup/player')
   .get(setup.getAllPlayerNames)
 
-app.route('/api/setup/player/:id')
+app.route('/api/setup/player/:name')
   .post(setup.getAllPlayerNames)
 
 app.route('/api/setup/month')

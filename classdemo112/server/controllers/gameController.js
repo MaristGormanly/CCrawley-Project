@@ -3,6 +3,7 @@ var data = gameData.addData();
 var pace = require ('../models/pace');
 var weather = require('../models/weather');
 var terrain = require('../models/terrain');
+var setup = require('../controllers/setupController');
 
 exports.getPace = function(req, res){
     data.currentPace = pace.allPaces[req.params.id];
@@ -13,9 +14,9 @@ exports.getPace = function(req, res){
 exports.updateGame = function(req, res){
   data.daysOnTrail++;
 
-  //data.milesTraveled += data.currentPace.playerMiles;
-
   data.currentWeather = weather.allWeather[3];
+
+  data.milesTraveled += Math.floor(data.currentPace.playerMiles * data.currentWeather.mileChange);
 
   var t = Math.floor(Math.random() * 100);
   if (t >= 0 && t <= 10) {
@@ -54,6 +55,7 @@ exports.updateGame = function(req, res){
   //currentWeather
 
   var t = Math.floor(Math.random() * 100);
+  //data.currentTerrain = terrain.allTerrain[t];
   if(t >= 0 && t <= 25){
     data.currentTerrain = terrain.allTerrain[0];
   }
@@ -68,7 +70,6 @@ exports.updateGame = function(req, res){
   }
   //currentTerrain
 
-
   data.groupHealth = data.groupHealth + data.currentWeather.healthChange;
   data.groupHealth = data.groupHealth + data.currentPace.playerHealth;
 
@@ -79,18 +80,16 @@ exports.updateGame = function(req, res){
     if(d <= 0.03){
       data.playerStatus[i] = true;
       data.messages.push(data.playerNames[i] + " has died");
-      console.log(data.playerNames[i] + " has died");
     }
   }
   else if (data.groupHealth < 20 && data.groupHealth > 0){
     if(d <= 0.1){
       data.playerStatus[i] = true;
       data.messages.push(data.playerNames[i] + " has died");
-      console.log(data.playerNames[i] + " has died");
     }
   }
 
-  if(data.milesTraveled = 500 && data.daysOnTrail <= 45){
+  if(data.milesTraveled == 500 && data.daysOnTrail <= 45){
     data.messages.push("you win");
   }
   if(data.daysOnTrail > 45 || data.groupHealth <= 0) {
@@ -114,4 +113,8 @@ data.playerMoney = 0;
 data.startMonth = "";
 res.setHeader('Content-Type', 'application/json');
 res.send(data);
+}
+
+exports.getData = function(){
+  return data;
 }

@@ -13,5 +13,5 @@ exports.allPaces.push(new paceInfo('resting', 0,5));
 
 exports.getAllPaces = function(req, res){
   res.setHeader('Content-Type', 'application/json');
-  res.send(exports.allPaces)
+  res.send(exports.allPaces);
 }
