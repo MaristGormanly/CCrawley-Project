@@ -1,7 +1,7 @@
 var pace = require ('../models/pace');
 
 function gameData(playerNames, playerStatus, playerProfession, playerMoney, startMonth, milesTraveled, groupHealth, currentPace, daysOnTrail, currentWeather, currentTerrain, messages) {
-  this.playerNames = [, , , , ];//setupController
+  this.playerNames = [];//setupController
   this.playerStatus = [false, false, false, false, false];//game controller
   this.playerProfession = "";//setupController
   this.playerMoney = 0;//setupController
