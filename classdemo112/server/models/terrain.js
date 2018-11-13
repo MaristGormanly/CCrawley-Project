@@ -3,7 +3,13 @@ function terrainInfo(terrainName, imageUrl) {
   this.imageUrl = imageUrl;
 }
 
-exports.addTerrain = function(terrainName, imageUrl) {
-  var terrain = new terrainInfo(terrainName, imageUrl));
-  return terrain;
+exports.allTerrain = []
+exports.allTerrain.push(new terrainInfo('plains', "images/plains.jpg"));
+exports.allTerrain.push(new terrainInfo('mountains', "images/mountains.jpg"));
+exports.allTerrain.push(new terrainInfo('desert', "images/desert.jpg"));
+exports.allTerrain.push(new terrainInfo('forest',  "images/forest.jpg"));
+
+exports.getAllPTerrain = function(req, res){
+  res.setHeader('Content-Type', 'application/json');
+  res.send(exports.allTerrain)
 }

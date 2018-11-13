@@ -27,4 +27,46 @@ app.get('/trail.html', function(request,response){
   response.sendFile('trail.html', {root: './client/views'})
 })
 
+var topTen = require('./controllers/topTenController');
+
+app.route('/api/topTen')
+  .get(topTen.getCurrentScores)
+
+var setup = require('./controllers/setupController');
+var getProf = ('./models/professions');
+
+app.route('/api/getProf/profession')
+  .get(setup.getProfession)
+
+app.route('/api/getProf/profession/:id')
+  .post(setup.getProfession)
+
+app.route('/api/setup/player')
+  .get(setup.getAllPlayerNames)
+
+app.route('/api/setup/player/:name')
+  .post(setup.getAllPlayerNames)
+
+app.route('/api/setup/month')
+  .get(setup.getStartMonth)
+
+app.route('/api/setup/month/:id')
+  .post(setup.getStartMonth)
+
+var gameCont = require('./controllers/gameController');
+
+app.route('/api/gameCont/nextday')
+  .get(gameCont.updateGame)
+
+app.route('/api/gameCont/reset')
+  .get(gameCont.resetGame)
+
+var getPaces = require('./models/pace');
+
+app.route('/api/getPaces/getAllPaces')
+  .get(gameCont.getPace)
+
+app.route('/api/getPaces/getAllPaces/:id')
+  .post(gameCont.getPace)
+
 app.listen(1337,() => console.log("this is working"));
