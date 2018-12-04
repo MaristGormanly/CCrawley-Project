@@ -1,3 +1,4 @@
+/*
 var audio = new Audio('/music/River_Radio_92_3_WBPM.mp3');
 
 window.onload = function() {
@@ -20,3 +21,4 @@ document.addEventListener("keypress", function(event){
       currentSong = true;
       }//else
 });//function
+*/

@@ -11,14 +11,45 @@ exports.getPace = function(req, res){
     res.send(data);
 }
 
+var goHunt = false;
+
+exports.hunt = function(req, res){
+  var f = Math.floor(Math.random() * 10);
+  if(f >= 5 && f <= 7){
+    data.food++;
+    goHunt = false;
+  }//if
+  if(f >= 7 && f <= 10){
+    data.food = data.food + 2;
+    goHunt = false;
+  }//if
+  else{
+    goHunt = false;
+  }
+}
+
+exports.eat = function(req, res){
+  if(data.food > 0 && data.currentPace == pace.allPaces[3]){
+    data.groupHealth++;
+    data.food--;
+  }
+  if(data.food < 0 && data.currentPace == pace.allPaces[3]){
+    data.messages.push('you have no food');
+  }
+  if(data.currentPace == pace.allPaces[0] || data.currentPace == pace.allPaces[1] || data.currentPace == pace.allPaces[2]){
+    data.messages.push('you can not eat while you are not resting');
+  }
+}
+
 exports.updateGame = function(req, res){
-  data.daysOnTrail++;
+  var daysOnTrails = data.daysOnTrail++;
 
   data.currentWeather = weather.allWeather[3];
 
   data.milesTraveled += Math.floor(data.currentPace.playerMiles * data.currentWeather.mileChange);
 
   var t = Math.floor(Math.random() * 100);
+
   if (t >= 0 && t <= 10) {
     data.currentWeather = weather.allWeather[0];
   }
@@ -107,10 +138,11 @@ data.groupHealth = 100;
 data.currentPace = pace.allPaces[0];
 data.currentTerrain = "";
 data.playerStatus = [false, false, false, false, false];
-data.playerNames = [ , , , , ];
+data.playerNames = [];
 data.playerProfession = "";
 data.playerMoney = 0;
 data.startMonth = "";
+data.food = 0;
 res.setHeader('Content-Type', 'application/json');
 res.send(data);
 }

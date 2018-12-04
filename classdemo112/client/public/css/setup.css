@@ -11,3 +11,19 @@ p{
   font-size: 150%;
   color: white;
   }
+
+ol{
+    display: block;
+    text-align: center;
+    margin:auto;
+    font-size: 150%;
+    color: white;
+    }
+
+  ul{
+      display: block;
+      text-align: center;
+      margin:auto;
+      font-size: 150%;
+      color: white;
+      }

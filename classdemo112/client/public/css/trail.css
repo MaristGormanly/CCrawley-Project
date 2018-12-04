@@ -8,8 +8,30 @@ img {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    position: relative;
+}
 
+#wagonContainer{
+  position:absolute;
+  width:50%;
+  height:40%;
+  top: 525px;
+  left:1009px;
+  right:0;
+  bottom:0;
+  z-index:1;
+}
+
+img.resize{
+  width: 200px;
+  height: 100px;
+}
+
+span{
+  display: block;
+  text-align: center;
+  margin:auto;
+  font-size: 150%;
+  color: white;
 }
 
 body {
@@ -34,3 +56,26 @@ p{
   position: fixed;
   bottom: 0;
 }
+
+span{
+  display: block;
+  text-align: center;
+  margin:auto;
+  font-size: 150%;
+  color: white;
+}
+
+ol{
+    display: block;
+    text-align: center;
+    margin:auto;
+    font-size: 150%;
+    color: white;
+    }
+
+ul{
+    display: block;
+    margin:auto;
+    font-size: 150%;
+    color: white;
+    }

@@ -9,25 +9,57 @@
 </h1>
 
 
-<h2><img src = "/images/wagon.png" alt = "wagon wheel" align = "right"></h2>
+<div id = "wagonContainer">
+    <img id ="wagon wheel" class="resize" src = "/images/yeet wagon.png">
+</div>
 
-<p class = "bottom">
-  Days on the Trail:
-  <br>
-  Miles Traveled:
-  <br>
-  Current Weather:
-  <br>
-  Current Health:
-  <br>
-  Current Pace:
-  <br>
-  Current Terrain:
-  <br>
-  # of Party Members:
-  <br>
-  Press Enter to travel a day or SPACEBAR to change pace!
-</p>
+<div id = "gamePlayContainer" class = "bottom">
+  <ul>
+  <li id = "daysOnTrail"></li>
+  <li id = "milesTraveled"></li>
+  <li id = "groupHealth"></li>
+  <li id = "currentTerrain"></li>
+  <li id = "currentWeather"></li>
+  <li id = "currentPace"></li>
+  <li id = "currentMoney"></li>
+  <li id = "playersLeft"></li>
+  <li id = "foodLeft"></li>
+  <li id = "instruct"></li>
+</ul>
+</div>
+
+<div id = "hidePace">
+  <div id = "paceContainer">
+    <span>Change pace</span>
+    <ol>
+      <li id = "steady">steady</li>
+      <li id = "strenuous">strenous</li>
+      <li id = "grueling">grueling</li>
+      <li id = "resting">resting</li>
+    </ol>
+  </div>
+</div>
+
+<div id = "hideFood">
+  <div id = "eatHuntCont">
+    <span>Select what you would like to do</span>
+    <ol>
+      <li id = "hunt">Hunt</li>
+      <li id = "eat">Eat</li>
+    </ol>
+  </div>
+</div>
+
+
+<div id = "GO">
+  <div id = "gameOverContainer">
+    <span>Please choose and option</span>
+    <ol>
+      <li id = "reset">Reset</li>
+      <li id = "mainmenu">Main Menu</li>
+    </ol>
+  </div>
+</div>
 
 
 <script type="text/javascript" src="/js/trail.js"></script>

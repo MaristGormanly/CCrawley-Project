@@ -35,6 +35,12 @@ app.route('/api/topTen')
 var setup = require('./controllers/setupController');
 var getProf = ('./models/professions');
 
+app.route('/api/setup/getSetup')
+  .get(setup.getSetup)
+
+app.route('/api/getSetupScreen/:id')
+  .get(setup.getSetupScreen)
+
 app.route('/api/getProf/profession')
   .get(setup.getProfession)
 
@@ -60,6 +66,12 @@ app.route('/api/gameCont/nextday')
 
 app.route('/api/gameCont/reset')
   .get(gameCont.resetGame)
+
+app.route('/api/gameCont/hunt')
+  .get(gameCont.hunt)
+
+app.route('/api/gameCont/eat')
+  .get(gameCont.eat)
 
 var getPaces = require('./models/pace');
 

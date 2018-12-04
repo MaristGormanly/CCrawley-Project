@@ -1,6 +1,6 @@
 document.addEventListener("keypress", function(event){
     if(event.keyCode == 49){//1
-      window.location.href = "trail.html";
+      window.location.href = "setup.html";
     }//if
 });//function
 
