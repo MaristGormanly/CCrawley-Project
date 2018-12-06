@@ -43,7 +43,7 @@ document.addEventListener("keypress", function(event){
     currGameScreen++;
     screen(currGameScreen);
   }
-  if(currGameScreen === 3){
+  else if(currGameScreen === 3){
       if(event.keyCode == 32){
         //window.location.href = "mainmenu.html";
       }//if
@@ -70,7 +70,7 @@ document.addEventListener("keypress", function(event){
       currGameScreen++;
       screen(currGameScreen);
     }
-  if(currGameScreen === 4){
+  else if(currGameScreen === 4){
     if(event.keyCode == 32){
       startTrail();
     }
@@ -110,7 +110,7 @@ document.addEventListener('click', function(event){
     var submitPName = document.getElementById('submitButton');
     if(x === submitPName){
       var p1 = document.getElementById('p1').value;
-    playerSet(0, p1);
+    playerSet(p1);
     console.log("p1 submited");
 
     currGameScreen++;
@@ -118,7 +118,7 @@ document.addEventListener('click', function(event){
     }
   }
 
-  if(currGameScreen === 2){
+  else if(currGameScreen === 2){
     var submitP2Name = document.getElementById('submitButton');
     if(x === submitP2Name){
       var p2 = document.getElementById('p2').value;
@@ -126,10 +126,10 @@ document.addEventListener('click', function(event){
       var p4 = document.getElementById('p4').value;
       var p5 = document.getElementById('p5').value;
 
-      playerSet(1, p2);
-      playerSet(2, p3);
-      playerSet(3, p4);
-      playerSet(4, p5);
+      playerSet(p2);
+      playerSet(p3);
+      playerSet(p4);
+      playerSet(p5);
 
       console.log("p2 " + p2);
 
@@ -138,46 +138,46 @@ document.addEventListener('click', function(event){
     }
   }
 
-  if(currGameScreen === 3){
+else if(currGameScreen === 3){
     var march = document.getElementById("marchMenuItem");
     if(x === march){
       month = "March";
       monthSet(0);
-      showSettings();
+
       }
 
     var april = document.getElementById("aprilMenuItem");
     if(x === april){
       month = "April";
       monthSet(1);
-      showSettings();
+
       }
 
     var may = document.getElementById("mayMenuItem");
     if(x === may){
       month = "May";
       monthSet(2);
-      showSettings();
+
       }
 
     var june = document.getElementById("juneMenuItem");
     if(x === june){
       month = "June";
       monthSet(3);
-      showSettings();
+
       }
 
     var july = document.getElementById("julyMenuItem");
     if(x === july){
       month = "July";
       monthSet(4);
-      showSettings();
+
       }
       currGameScreen++;
       screen(currGameScreen);
   }
 
-  if (currGameScreen === 4){
+  else if (currGameScreen === 4){
     var start = document.getElementById('selectOption');
     if(x === start){
       startTrail();
@@ -208,6 +208,9 @@ function screen(currGameScreen){
         console.log("received back: " + data);
         gameContainer.innerHTML = data;
         console.log("setup display is working");
+        if(currGameScreen == 4){
+          showSettings();
+        }
       });
     });
 }
@@ -228,14 +231,14 @@ fetch('/api/getProf/profession/' + profession,
   console.log("profession " + profession + " saved!");
 }
 
-function playerSet(playerID, playerName){
+function playerSet(playerName){
   fetch('/api/setup/player/' + playerName,
     {
       method:'post',
       headers:{
         "Content-type":"application/json; charset=UTF-8"
-      },
-      body:'{"playerID": "'+ playerID +'" / "'+ playerName +'"}'
+      }//,
+      //body:'{"playerID": "'+ playerID +'" / "'+ playerName +'"}'
     }).then(function(response){
       if(response.status != 200)
       console.log('problem with ajax call!' + response.status + "msg: " + response.value);
@@ -273,21 +276,22 @@ function showSettings(){
         response.status + "msg: " + response.value);
         return;
       }//if
-      response.text().then(function(data){
+      response.json().then(function(data){
         console.log("received back: " + data);
-        dataJSON = JSON.parse(data);
-        allSettings(dataJSON);
+        //var setting = JSON.parse(data);
+        allSettings(data);
       });//response.text() func
     });//.then
 }//showSettings
 
 function allSettings(setting){
-  document.getElementById('wagonLeader').innerHTML = "Wagon Leader: " + setting.p1;
-  document.getElementById('member1').innerHTML = "Member 1: " + setting.p2;
-  document.getElementById('member2').innerHTML = "Member 2: " + setting.p3;
-  document.getElementById('member3').innerHTML = "Member 3: " + setting.p4;
-  document.getElementById('member4').innerHTML = "Member 4: " + setting.p5;
-  document.getElementById('profession').innerHTML = "Profession: " + setting.profession;
-  document.getElementById('cash').innerHTML = "Money: " + setting.money;
-  document.getElementById('month').innerHTML = "Month: " + setting.month;
+  console.log(setting);
+  document.getElementById('wagonLeader').innerHTML = "Wagon Leader: " + setting.playerNames[0];
+  document.getElementById('member1').innerHTML = "Member 1: " + setting.playerNames[1];
+  document.getElementById('member2').innerHTML = "Member 2: " + setting.playerNames[2];
+  document.getElementById('member3').innerHTML = "Member 3: " + setting.playerNames[3];
+  document.getElementById('member4').innerHTML = "Member 4: " + setting.playerNames[4];
+  document.getElementById('profession').innerHTML = "Profession: " + setting.playerProfession;
+  document.getElementById('cash').innerHTML = "Money: " + setting.playerMoney;
+  document.getElementById('month').innerHTML = "Month: " + setting.startMonth;
 }

@@ -3,16 +3,19 @@ window.addEventListener("load", function(event){
   paceHide();
   foodHide();
   gameOverHide();
+  winOverHide();
 });
 
 var paceCon = false;
 var huntEat = false;
 var gameOver = false;
 var goHide = false;
+var winHide = false;
 
 document.addEventListener("keypress", function(event){
     if(event.keyCode === 32){
       nextDay();
+      deathMessageHide();
     }//if
 
     if (event.keyCode === 13) {
@@ -24,33 +27,40 @@ document.addEventListener("keypress", function(event){
       }
     }
 
-    if(event.keyCode === 69){//e
-      if(huntEat === false){
-        food();
-      }
-      else{
-        foodHide();
-      }
-    }
 
 });
 
-document.addEventListener("keypress", function(event){
+document.addEventListener("keydown", function(event){
+  if(event.keyCode === 69){//e
+    if(huntEat === false){
+      food();
+    }
+    else{
+      foodHide();
+    }
+  }
+
   if (event.keyCode === 82){
     resetTrail();
   }
+
 });
 
-function gameOverCheck(){
-  if(gameOver === true){
-    resetOpt();
-    if(event.keyCode == 49){
-      reset();
-    }
-    if(event.keyCode == 50){
-      location.replace("mainmenu.html");
-    }
-  }
+
+function changePace(pace){
+  fetch('/api/getPaces/getAllPaces/' + pace,
+  {
+    method:'post',
+    headers:{
+      "Content-type":"application/json; charset=UTF-8"
+  },
+  body:'{"pace": "'+ pace +'"}'
+  }).then(function(response){
+    if(response.status !== 200)
+    console.log('problem with ajax call!' + response.status + "msg: " + response.value);
+    return;
+  })
+  console.log("pace " + pace + " saved!");
 }
 
 function hunt(){
@@ -85,49 +95,73 @@ function eat(){
 })
 }
 
-function changePace(pace){
-  fetch('/api/getPaces/getAllPaces/' + pace,
-  {
-    method:'post',
-    headers:{
-      "Content-type":"application/json; charset=UTF-8"
-  },
-  body:'{"pace": "'+ pace +'"}'
-  }).then(function(response){
-    if(response.status !== 200)
-    console.log('problem with ajax call!' + response.status + "msg: " + response.value);
-    return;
-  })
-  console.log("pace " + pace + " saved!");
-}
-
 document.addEventListener("keypress", function(event){
   if(paceCon === true){
     if(event.keyCode == 49){
       pace = 0;
       changePace(pace);
+      paceHide();
     }
     if(event.keyCode == 50){
       pace = 1;
       changePace(pace);
+      paceHide();
     }
     if(event.keyCode == 51){
       pace = 2;
       changePace(pace);
+      paceHide();
     }
     if(event.keyCode == 52){
       pace = 3;
       changePace(pace);
+      paceHide();
     }
   }
   if(huntEat === true){
     if(event.keyCode == 49){//hunt
+      console.log('hunting');
       hunt();
+      foodHide();
     }
     if(event.keyCode == 50){//eat
+      console.log('eating');
       eat();
+      foodHide();
     }
   }
+  if(goHide === true){
+    if(event.keyCode == 49){//hunt
+      console.log('reset');
+      resetTrail();
+      gameOverHide();
+      deathMessageHide();
+    }
+    if(event.keyCode == 50){//eat
+      console.log('mainmenu');
+      location.replace('mainmenu.html');
+      gameOverHide();
+      deathMessageHide();
+      resetTrail();
+    }
+  }
+
+  if(winHide === true){
+    if(event.keyCode == 49){//hunt
+      console.log('reset');
+      resetTrail();
+      winOverHide();
+      deathMessageHide();
+    }
+    if(event.keyCode == 50){//eat
+      console.log('mainmenu');
+      location.replace('mainmenu.html');
+      winOverHide();
+      deathMessageHide();
+      resetTrail();
+    }
+  }
+
 });
 
 document.addEventListener('click', function(event){
@@ -138,47 +172,53 @@ document.addEventListener('click', function(event){
     if(x === steady){
       pace = 0;
       changePace(pace);
+      paceHide();
     }
     var strenuous = document.getElementById("strenuous");
     if(x === strenuous){
       pace = 1;
       changePace(pace);
+      paceHide();
     }
     var grueling = document.getElementById("grueling");
     if(x === grueling){
       pace = 2;
       changePace(pace);
+      paceHide();
     }
     var resting = document.getElementById("resting");
     if(x === resting){
       pace = 3;
       changePace(pace);
+      paceHide();
     }
   }
 });
 
 function nextDay(){
-  //var gamePlayContainer = document.getElementById("gamePlayContainer");
   fetch('/api/gameCont/nextday',
-  {
-    method:'Get',
-    headers:{
-      "Content-type":"text/html; charset=UTF-8"
-    }
-  }).then(function(response){
-    if(response.status !== 200){
-    console.log('problem with ajax call!' +
-    response.status + "msg: " + response.value);
-    return;
-  }//if
-  response.text().then(function(data){
-    console.log("received back: " + data);
-    info = JSON.parse(data);
-    getInfo(info);
-    wagonMove(info);
+    {
+      method:'Get',
+      headers:{
+        "Content-type":"text/html; charset=UTF-8"
+      }
+    }).then(function(response){
+      if(response.status !== 200){
+      console.log('problem with ajax call!' +
+      response.status + "msg: " + response.value);
+      return;
+    }//if
+    response.text().then(function(data){
+      console.log("received back: " + data);
+      info = JSON.parse(data);
+      getInfo(info);
+      wagonMove(info);
+      deathMessage(info);
+      gameOverMess(info);
+    });
   });
-});
 }
+
 
 function resetTrail(){
     fetch('/api/gameCont/reset').then(function(response){
@@ -285,11 +325,50 @@ function getInfo(info){
   document.getElementById('currentWeather').innerHTML = "Current Weather: " + JSON.stringify(info.currentWeather.weatherType);
   document.getElementById('currentPace').innerHTML = "Current Pace: " + JSON.stringify(info.currentPace.paceName);
   document.getElementById('currentMoney').innerHTML = "Money: " + info.playerMoney;
-  document.getElementById('playersLeft').innerHTML = "# of Players Left: " + info.playerNames;
+  document.getElementById('playersLeft').innerHTML = "Players Left: " + info.playerNames;
   document.getElementById('foodLeft').innerHTML = "Food Left: " + info.food;
   document.getElementById('instruct').innerHTML = "Press space to move forward one day, enter to change pace, r to reset, e to open food menu";
+  if(info.currentTerrain.terrainName == 'plains'){
+    document.getElementById('imgHolder').style.background = 'url(/images/plains.jpg)';
+  }
+  else if(info.currentTerrain.terrainName == 'mountains'){
+    document.getElementById('imgHolder').style.background = 'url(/images/mountains.jpg)';
+  }
+  else if(info.currentTerrain.terrainName == 'desert'){
+    document.getElementById('imgHolder').style.background = 'url(/images/desert.jpg)';
+  }
+  else if(info.currentTerrain.terrainName == 'forest'){
+    document.getElementById('imgHolder').style.background = 'url(/images/forest.jpg)';
+  }
 }
 
+function deathMessage(info){
+    if(info.playerStatus[0] == true){
+      document.getElementById('messBox').innerHTML = "Player " + info.playerNames[0] + " has died";
+      console.log("Player " + info.playerNames[0] + " has died");
+    }//if
+    else if(info.playerStatus[1] == true){
+      document.getElementById('messBox').innerHTML = "Player " + info.playerNames[1] + " has died";
+      console.log("Player " + info.playerNames[1] + " has died");
+    }//if
+    else if(info.playerStatus[2] == true){
+      document.getElementById('messBox').innerHTML = "Player " + info.playerNames[2] + " has died";
+      console.log("Player " + info.playerNames[2] + " has died");
+    }//if
+    else if(info.playerStatus[3] == true){
+      document.getElementById('messBox').innerHTML = "Player " + info.playerNames[3] + " has died";
+      console.log("Player " + info.playerNames[3] + " has died");
+    }//if
+    else if(info.playerStatus[4] == true){
+      document.getElementById('messBox').innerHTML = "Player " + info.playerNames[4] + " has died";
+      console.log("Player " + info.playerNames[4] + " has died");
+    }//if
+
+}//func
+
+function deathMessageHide(){
+  document.getElementById('messBox').style.display = "none";
+}
 
 function paceCont(){
   if(paceCon === false){
@@ -321,13 +400,39 @@ function foodHide(){
   huntEat = false;
 }
 
+function gameOverMess(info){
+  var i = 0;
+  for(var i = 0; i < info.messages.length; i++){
+    if(info.messages[i] == 'you lose'){
+      document.getElementById('messBox').style.display = "You lose. Play again?";
+      resetOpt();
+      }
+    else if(info.messages[i] == 'you win'){
+      document.getElementById('messBox').style.display = "You win. Play again?";
+      resetWinOpt();
+    }
+    else{
+      gameOverHide();
+    }
+  }
+}
+
+function resetWinOpt(){
+  if(winHide === false){
+  document.getElementById('win').style.display = "block";
+  winHide = true;
+  }
+}
+
+function winOverHide(){
+  document.getElementById('win').style.display = "none";
+  winHide = false;
+}
+
 function resetOpt(){
   if(goHide === false){
   document.getElementById('GO').style.display = "block";
   goHide = true;
-  }
-  else{
-    gameOverHide();
   }
 }
 

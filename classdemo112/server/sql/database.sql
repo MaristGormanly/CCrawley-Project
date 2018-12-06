@@ -1,32 +1,18 @@
-var mysql = require('mysql');
+/*drop database if exists otTopTen;
+create database if not exists otTopTen character set utf8;
+use otTopTen;
 
-var con = mysql.createConnection({
-  host: "localhost",
-  user: "ttuser",
-  password: "12345"
-  });
+create table topTen(id integer not null primary key auto_increment, playerName
+  varchar(50), playerScore Integer, dateEarned varchar(15));
 
-con.connect(function(err){
-  if(err) throw err;
-  console.log("MYSQL DB Connected!");
-  var sql = "user otTopTen;";
-  con.query(sql, function(err, result){
-    if(err) throw err;
-  });
-});
+insert into topTen (playerName, playerScore, dateEarned) values
+  ('Chris', 300, '2018/12/5');
 
+insert into topTen (playerName, playerScore, dateEarned) values
+  ('Emily', 240, '2018/12/5');
 
-exports.getTopScores = function(req, res){
-  var currentTopScores = [];
+insert into topTen (playerName, playerScore, dateEarned) values
+  ('Jake', 100, '2018/12/5');
 
-  var sql = "select playerName, playerScore, dateEarned from topTen;";
-  con.query(sql, function(err, rows, fields){
-    if(err) throw err;
-    for(var i = 0; i < rows.length; i++){
-    currentTopScores[i] = topTen.addScore(row[i].playerName, rows[i].playerScore, rows[i].dateEarned)
-    }
-    res.serHeader('application/JSON');
-  })
-}
-
-req.body.playerName + "' , '" + playerScore + "' , '" + dateEarned;
+create user 'ttuser'@'localhost' identified by '12345';
+grant all on otTopTen.topTen to 'ttUser'@'localhost';

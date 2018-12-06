@@ -18,3 +18,11 @@ p{
   font-size: 150%;
   color: white;
   }
+
+li{
+  display: block;
+  text-align: center;
+  margin:auto;
+  font-size: 150%;
+  color: white;
+      }

@@ -44,11 +44,11 @@ exports.getSetupScreen = function(req, res){
     res.setHeader('Content-Type', 'text/html');
     res.send(screen);
 }
-
+/*
 exports.getSetup = function(req, res){
   res.setHeader('Content-Type', 'application/json');
   res.send(gameData);
-}
+}*/
 
 var startGame1 = "<p>Many kinds of people made the trip trip to Oregon.</p>"
 + "<p>You may:</p>"
