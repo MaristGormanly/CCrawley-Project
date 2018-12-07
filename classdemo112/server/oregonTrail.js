@@ -31,16 +31,20 @@ var topTen = require('./controllers/topTenController');
 
 app.route('/api/topTen')
   .get(topTen.getTopScores)
-
-app.route('/api/getTopTen')
+/*
+app.route('/api/getTopTen/')
   .post(topTen.insertTopScores)
-
+*/
 var setup = require('./controllers/setupController');
 var getProf = ('./models/professions');
 /*
 app.route('/api/setup/getSetup')
   .get(setup.getSetup)
 */
+
+app.route('/api/getTopTen/:player')
+  .post(topTen.insertTopScores)
+
 app.route('/api/getSetupScreen/:id')
   .get(setup.getSetupScreen)
 

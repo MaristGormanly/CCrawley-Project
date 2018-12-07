@@ -388,8 +388,6 @@ function deathMessageHide(){
   });
 }
 
-
-
 function paceCont(){
   if(paceCon === false){
     document.getElementById('hidePace').style.display = "block";
@@ -422,6 +420,25 @@ function foodHide(){
 
 function gameOverMess(info){
   var i = 0;
+  var finalScore;
+  var wagLead;
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth()+1; //January is 0!
+  var yyyy = today.getFullYear();
+
+  if(dd<10) {
+    dd = '0'+dd
+    }
+  if(mm<10) {
+    mm = '0'+mm
+    }
+
+
+  wagLead = info.playerName;
+  finalScore = (info.milesTraveled - info.daysOnTrail) * 10;
+  today = mm + '/' + dd + '/' + yyyy;
+
   for(var i = 0; i < info.messages.length; i++){
     if(info.messages[i] == 'you lose'){
       document.getElementById('messBox').style.display = "You lose. Play again?";
@@ -429,6 +446,7 @@ function gameOverMess(info){
       }
     else if(info.messages[i] == 'you win'){
       document.getElementById('messBox').style.display = "You win. Play again?";
+      scoreSet(wagLead, finalScore, today);
       resetWinOpt();
     }
     else{
@@ -459,4 +477,20 @@ function resetOpt(){
 function gameOverHide(){
   document.getElementById('GO').style.display = "none";
   goHide = false;
+}
+
+function scoreSet(playerName, playerScore, playerDate){
+fetch('/api/getTopTen/' + playerName + ", " + playerScore + ", " + playerDate,
+  {
+    method:'post',
+    headers:{
+      "Content-type":"application/json; charset=UTF-8"
+    }//,
+    //body:'{"sql": "'+ playerName + playerScore + playerDate +'"}'
+  }).then(function(response){
+    if(response.status !== 200)
+    console.log('problem with ajax call!' + response.status + "msg: " + response.value);
+    return;
+  })
+  console.log("sql:" + playerName + ", " + playerScore + ", " + playerDate + "saved!");
 }

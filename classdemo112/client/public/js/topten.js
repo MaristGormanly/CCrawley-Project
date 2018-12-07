@@ -71,7 +71,7 @@ function getScores(){
   });
 }
 
-
+/*
 function scoreSet(playerName, playerScore, playerDate){
 fetch('/api/getTopTen/' + playerName + playerScore + playerDate,
   {
@@ -87,7 +87,7 @@ fetch('/api/getTopTen/' + playerName + playerScore + playerDate,
   })
   console.log("sql:" + playerName + playerScore + playerDate + "saved!");
 }
-
+*/
 function printTopTen(array){
   var jsonData = JSON.parse(array);
   console.log("jsonData " + jsonData);
