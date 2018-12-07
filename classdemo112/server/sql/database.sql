@@ -1,4 +1,4 @@
-/*drop database if exists otTopTen;
+drop database if exists otTopTen;
 create database if not exists otTopTen character set utf8;
 use otTopTen;
 
@@ -15,4 +15,4 @@ insert into topTen (playerName, playerScore, dateEarned) values
   ('Jake', 100, '2018/12/5');
 
 create user 'ttuser'@'localhost' identified by '12345';
-grant all on otTopTen.topTen to 'ttUser'@'localhost';
+grant all on otTopTen.topTen to 'ttuser'@'localhost';

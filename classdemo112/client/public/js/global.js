@@ -13,21 +13,20 @@ window.onload = function() {
     audio.play();
 }
 */
-var currentSong = true;
+
 
 document.addEventListener("keypress", function(event){
-   if(event.keyCode == 52 && currentSong == true){//turn sound off 4
+   if(event.keyCode == 52 && audio.play){//turn sound off 4
       document.getElementById("offColor").style.color = "red";
       document.getElementById("onColor").style.color = "white";
       audio.pause();
-      currentSong = false;
+
       document.cookie = "musicOn";
     }//if
     else{
       document.getElementById("onColor").style.color = "red";
       document.getElementById("offColor").style.color = "white";
       audio.play();
-      currentSong = true;
       document.cookie = "musicOff";
       }//else
 });//function

@@ -5,28 +5,49 @@ h1 {
 }
 
 img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+#title{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  z-index: 1;
+  top: -12px;
+  left: 12px;
+  width: 150px;
+  height: 200px;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }
 
 #messBox{
   width: 175px;
   height: 50px;
+  background-color: black;
   text-align: left;
   color: white;
   font-size: 20px;
 }
 
 #imgHolder {
-    background-image: url("../images/sunset-fog-meadow-11744.jpg");
-    background-repeat: no-repeat;
-    background-size: 1160px 720px;
-    background-position-x: center;
+    z-index: auto;
+    position: absolute;
+    top: 0;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    background-color: white;
+    display: block;
+    width: 50%;
 }
 
 #wagonContainer{

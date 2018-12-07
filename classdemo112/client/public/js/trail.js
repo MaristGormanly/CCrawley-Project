@@ -42,6 +42,7 @@ document.addEventListener("keydown", function(event){
 
   if (event.keyCode === 82){
     resetTrail();
+    deathMessage(info);
   }
 
 });
@@ -135,29 +136,29 @@ document.addEventListener("keypress", function(event){
       console.log('reset');
       resetTrail();
       gameOverHide();
-      deathMessageHide();
+      deathMessage(info);
     }
     if(event.keyCode == 50){//eat
       console.log('mainmenu');
       location.replace('mainmenu.html');
       gameOverHide();
-      deathMessageHide();
+      deathMessage(info);
       resetTrail();
     }
   }
 
   if(winHide === true){
-    if(event.keyCode == 49){//hunt
+    if(event.keyCode == 49){//reset
       console.log('reset');
       resetTrail();
       winOverHide();
-      deathMessageHide();
+      deathMessage(info);
     }
-    if(event.keyCode == 50){//eat
+    if(event.keyCode == 50){//mainmenu
       console.log('mainmenu');
       location.replace('mainmenu.html');
       winOverHide();
-      deathMessageHide();
+      deathMessage(info);
       resetTrail();
     }
   }
@@ -329,46 +330,65 @@ function getInfo(info){
   document.getElementById('foodLeft').innerHTML = "Food Left: " + info.food;
   document.getElementById('instruct').innerHTML = "Press space to move forward one day, enter to change pace, r to reset, e to open food menu";
   if(info.currentTerrain.terrainName == 'plains'){
-    document.getElementById('imgHolder').style.background = 'url(/images/plains.jpg)';
+    document.getElementById('imgHolder').innerHTML = "<img src = '/images/plains.jpg' width = '1306' height = '636' />";
   }
   else if(info.currentTerrain.terrainName == 'mountains'){
-    document.getElementById('imgHolder').style.background = 'url(/images/mountains.jpg)';
+    document.getElementById('imgHolder').innerHTML = "<img src = '/images/mountains.jpg' width = '1306' height = '636' />";
   }
   else if(info.currentTerrain.terrainName == 'desert'){
-    document.getElementById('imgHolder').style.background = 'url(/images/desert.jpg)';
+    document.getElementById('imgHolder').innerHTML = "<img src = '/images/desert.jpg' width = '1306' height = '636' />";
   }
   else if(info.currentTerrain.terrainName == 'forest'){
-    document.getElementById('imgHolder').style.background = 'url(/images/forest.jpg)';
+    document.getElementById('imgHolder').innerHTML = "<img src = '/images/forest.jpg' width = '1306' height = '636' />";
   }
 }
 
 function deathMessage(info){
-    if(info.playerStatus[0] == true){
-      document.getElementById('messBox').innerHTML = "Player " + info.playerNames[0] + " has died";
+    var messageHide = [false, false, false, false, false];
+    if(info.playerStatus[0] == true && messageHide[0] == false){
+      document.getElementById('mess').innerHTML = "Message: Player " + info.playerNames[0] + " has died";
       console.log("Player " + info.playerNames[0] + " has died");
+      messageHide[0] = true;
+      deathMessageHide();
     }//if
-    else if(info.playerStatus[1] == true){
-      document.getElementById('messBox').innerHTML = "Player " + info.playerNames[1] + " has died";
+    else if(info.playerStatus[1] == true && messageHide[1] == false){
+      document.getElementById('mess').innerHTML = "Message: Player " + info.playerNames[1] + " has died";
       console.log("Player " + info.playerNames[1] + " has died");
+      messageHide[1] = true;
+      deathMessageHide();
     }//if
-    else if(info.playerStatus[2] == true){
-      document.getElementById('messBox').innerHTML = "Player " + info.playerNames[2] + " has died";
+    else if(info.playerStatus[2] == true && messageHide[2] == false){
+      document.getElementById('mess').innerHTML = "Message: Player " + info.playerNames[2] + " has died";
       console.log("Player " + info.playerNames[2] + " has died");
+      messageHide[2] = true;
+      deathMessageHide();
     }//if
-    else if(info.playerStatus[3] == true){
-      document.getElementById('messBox').innerHTML = "Player " + info.playerNames[3] + " has died";
+    else if(info.playerStatus[3] == true && messageHide[3] == false){
+      document.getElementById('mess').innerHTML = "Message:  Player " + info.playerNames[3] + " has died";
       console.log("Player " + info.playerNames[3] + " has died");
+      messageHide[3] = true;
+      deathMessageHide();
     }//if
-    else if(info.playerStatus[4] == true){
-      document.getElementById('messBox').innerHTML = "Player " + info.playerNames[4] + " has died";
+    else if(info.playerStatus[4] == true && messageHide[4] == false){
+      document.getElementById('mess').innerHTML = "Message: Player " + info.playerNames[4] + " has died";
       console.log("Player " + info.playerNames[4] + " has died");
+      messageHide[4] = true;
+      deathMessageHide();
     }//if
-
+    else{
+      document.getElementById('mess').innerHTML = "Message: "
+    }
 }//func
 
 function deathMessageHide(){
-  document.getElementById('messBox').style.display = "none";
+  document.addEventListener("keypress", function(event){
+    if(event.keyCode === 32){
+      document.getElementById('mess').innerHTML = "Message: "
+    }//if
+  });
 }
+
+
 
 function paceCont(){
   if(paceCon === false){
