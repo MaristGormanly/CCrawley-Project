@@ -46,7 +46,7 @@ exports.getTopScores = function(req, res){
 }
 
 exports.insertTopScores = function(req, res){
-  
+
   var sql = "insert into topTen (playerName, playerScore, dateEarned) VALUES ('"+req.body.playerName+"','"+req.body.playerScore+"','"+req.body.playerDate+"')";
   con.query(sql, function (err, result) {
     if (err) throw err;

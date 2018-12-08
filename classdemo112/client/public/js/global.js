@@ -8,11 +8,10 @@ if(x == "musicOff"){
 else{
   audio.autoplay = true;
 }
-/*
+
 window.onload = function() {
     audio.play();
 }
-*/
 
 
 document.addEventListener("keypress", function(event){

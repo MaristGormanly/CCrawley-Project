@@ -433,7 +433,7 @@ function gameOverMess(info){
     }
 
   var player = new Object();
-  player.playerName = info.playerNames;
+  player.playerName = info.playerNames[i];
   player.playerScore = (info.milesTraveled - info.daysOnTrail) * 10;
   player.playerDate = mm + '/' + dd + '/' + yyyy;
 
