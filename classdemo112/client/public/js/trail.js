@@ -420,8 +420,6 @@ function foodHide(){
 
 function gameOverMess(info){
   var i = 0;
-  var finalScore;
-  var wagLead;
   var today = new Date();
   var dd = today.getDate();
   var mm = today.getMonth()+1; //January is 0!
@@ -434,10 +432,10 @@ function gameOverMess(info){
     mm = '0'+mm
     }
 
-
-  wagLead = info.playerName;
-  finalScore = (info.milesTraveled - info.daysOnTrail) * 10;
-  today = mm + '/' + dd + '/' + yyyy;
+  var player = new Object();
+  player.playerName = info.playerNames;
+  player.playerScore = (info.milesTraveled - info.daysOnTrail) * 10;
+  player.playerDate = mm + '/' + dd + '/' + yyyy;
 
   for(var i = 0; i < info.messages.length; i++){
     if(info.messages[i] == 'you lose'){
@@ -446,7 +444,7 @@ function gameOverMess(info){
       }
     else if(info.messages[i] == 'you win'){
       document.getElementById('messBox').style.display = "You win. Play again?";
-      scoreSet(wagLead, finalScore, today);
+      scoreSet(player);
       resetWinOpt();
     }
     else{
@@ -479,8 +477,8 @@ function gameOverHide(){
   goHide = false;
 }
 
-function scoreSet(playerName, playerScore, playerDate){
-fetch('/api/getTopTen/' + playerName + ", " + playerScore + ", " + playerDate,
+function scoreSet(player){//Name, playerScore, playerDate){
+fetch('/api/topTen/postTopTen' + player, //.playerName + ", " + player.playerScore + ", " + player.playerDate,
   {
     method:'post',
     headers:{
@@ -492,5 +490,5 @@ fetch('/api/getTopTen/' + playerName + ", " + playerScore + ", " + playerDate,
     console.log('problem with ajax call!' + response.status + "msg: " + response.value);
     return;
   })
-  console.log("sql:" + playerName + ", " + playerScore + ", " + playerDate + "saved!");
+  console.log("sql:" + JSON.stringify(player));//.playerName + ", " + player.playerScore + ", " + player.playerDate + "saved!");
 }

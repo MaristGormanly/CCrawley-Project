@@ -59,7 +59,7 @@ document.addEventListener("keypress", function(event){
 });//function
 
 function getScores(){
-    fetch('/api/topTen').then(function(response){
+    fetch('/api/topTen/getTopTen').then(function(response){
       if(response.status != 200){
         console.log('problem with ajax call!' + response.status + "msg: " + response.value);
         return;

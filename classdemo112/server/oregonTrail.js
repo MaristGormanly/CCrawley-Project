@@ -29,7 +29,7 @@ app.get('/trail.html', function(request,response){
 
 var topTen = require('./controllers/topTenController');
 
-app.route('/api/topTen')
+app.route('/api/topTen/getTopTen')
   .get(topTen.getTopScores)
 /*
 app.route('/api/getTopTen/')
@@ -42,7 +42,7 @@ app.route('/api/setup/getSetup')
   .get(setup.getSetup)
 */
 
-app.route('/api/getTopTen/:player')
+app.route('/api/topTen/postTopTen')
   .post(topTen.insertTopScores)
 
 app.route('/api/getSetupScreen/:id')
