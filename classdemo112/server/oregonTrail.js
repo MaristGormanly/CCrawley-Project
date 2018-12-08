@@ -19,6 +19,10 @@ app.get('/setup.html', function(request,response){
   response.sendFile('setup.html', {root: './client/views'})
 })
 
+app.get('/desc.html', function(request,response){
+  response.sendFile('desc.html', {root: './client/views'})
+})
+
 app.get('/topten.html', function(request,response){
   response.sendFile('topten.html', {root: './client/views'})
 })

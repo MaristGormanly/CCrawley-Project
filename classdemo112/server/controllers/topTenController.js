@@ -46,12 +46,12 @@ exports.getTopScores = function(req, res){
 }
 
 exports.insertTopScores = function(req, res){
-
+  console.log(req.body);
   var sql = "insert into topTen (playerName, playerScore, dateEarned) VALUES ('"+req.body.playerName+"','"+req.body.playerScore+"','"+req.body.playerDate+"')";
   con.query(sql, function (err, result) {
     if (err) throw err;
     console.log("1 record inserted");
-  });
+  })
   res.setHeader('Content-Type', 'application/JSON');
-  res.send(req.body.playerName);
+  res.send(req.body);//for some reason there is a server error when I try add a new top ten score. not sure why.
 }

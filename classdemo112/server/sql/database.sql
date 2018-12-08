@@ -9,7 +9,7 @@ insert into topTen (playerName, playerScore, dateEarned) values
   ('Chris', 300, '2018/12/5');
 
 insert into topTen (playerName, playerScore, dateEarned) values
-  ('Emily', 240, '2018/12/5');
+  ('Emily', 40, '2018/12/5');
 
 insert into topTen (playerName, playerScore, dateEarned) values
   ('Jake', 100, '2018/12/5');

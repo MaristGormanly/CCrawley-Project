@@ -484,7 +484,7 @@ fetch('/api/topTen/postTopTen',
     headers:{
       "Content-type":"application/json; charset=UTF-8"
     },
-    body:'{"sql": "'+ player +'"}'
+    body: JSON.stringify(player)
   }).then(function(response){
     if(response.status !== 200)
     console.log('problem with ajax call!' + response.status + "msg: " + response.value);
