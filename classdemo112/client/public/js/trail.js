@@ -478,13 +478,13 @@ function gameOverHide(){
 }
 
 function scoreSet(player){//Name, playerScore, playerDate){
-fetch('/api/topTen/postTopTen' + player, //.playerName + ", " + player.playerScore + ", " + player.playerDate,
+fetch('/api/topTen/postTopTen', //+ player, .playerName + ", " + player.playerScore + ", " + player.playerDate,
   {
     method:'post',
     headers:{
       "Content-type":"application/json; charset=UTF-8"
-    }//,
-    //body:'{"sql": "'+ playerName + playerScore + playerDate +'"}'
+    },
+    body:'{"sql": "'+ player +'"}'
   }).then(function(response){
     if(response.status !== 200)
     console.log('problem with ajax call!' + response.status + "msg: " + response.value);
