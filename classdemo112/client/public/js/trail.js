@@ -477,8 +477,8 @@ function gameOverHide(){
   goHide = false;
 }
 
-function scoreSet(player){//Name, playerScore, playerDate){
-fetch('/api/topTen/postTopTen', //+ player, .playerName + ", " + player.playerScore + ", " + player.playerDate,
+function scoreSet(player){
+fetch('/api/topTen/postTopTen',
   {
     method:'post',
     headers:{
@@ -490,5 +490,5 @@ fetch('/api/topTen/postTopTen', //+ player, .playerName + ", " + player.playerSc
     console.log('problem with ajax call!' + response.status + "msg: " + response.value);
     return;
   })
-  console.log("sql:" + JSON.stringify(player));//.playerName + ", " + player.playerScore + ", " + player.playerDate + "saved!");
+  console.log("sql:" + JSON.stringify(player));
 }
